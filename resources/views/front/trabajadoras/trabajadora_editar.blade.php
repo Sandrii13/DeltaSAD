@@ -4,7 +4,7 @@
             <div class="modal-header">
                 <h4>Editar Trabajadora</h4>
             </div>
-            <form action="{{route('trabajadoras.store')}}" enctype="multipart/form-data" method="POST">
+            <form action="{{route('trabajadoras.update')}}" enctype="multipart/form-data" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input name="id" type="hidden"  value="">
                 <div class="modal-body">
@@ -80,4 +80,22 @@
         </div>
     </div>
 </div>
+@if(Session::has('updated'))
+    <script type="text/javascript">
+        Swal.fire({
+            icon: 'success',
+            title: 'Done!',
+            text: 'Trabajadora modificada'
+        })
 
+    </script>
+@elseif(Session::has('updated'))
+<script type="text/javascript">
+    Swal.fire({
+        icon: 'error',
+        title: 'Ups!',
+        text: 'Error al modificar trabajadora :('
+    })
+
+</script>
+@endif
