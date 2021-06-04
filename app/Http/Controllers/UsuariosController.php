@@ -55,15 +55,13 @@ class UsuariosController extends Controller
                             ->where('usuarios.id', $user_id)
                             ->get();
             $incidencias = DB::table('incidencias')
-                            ->join('users', 'users.id', '=', 'incidencias.id_tf')
                             ->join('usuarios', 'usuarios.id', '=', 'incidencias.id_usuario')
                             ->select( 'estado', 'descripcion', 'incidencias.created_at', DB::raw('incidencias.id AS idi'))
                             ->where('usuarios.id', $user_id)
                             ->get();
             $evolutivos = DB::table('evolutivos')
                             ->join('usuarios', 'id_usuario', '=', 'usuarios.id')
-                            ->join('users', 'id_tf', '=', 'users.id')
-                            ->select('evolutivos.id', 'evolutivos.fecha_creacion', 'evolutivos.descripcion', 'users.nombre')
+                            ->select('evolutivos.id', 'evolutivos.fecha_creacion', 'evolutivos.descripcion')
                             ->where('id_usuario', $user_id)
                             ->get();
             $tf=DB::table('users')->select('id', 'nombre', 'apellidos')->where('zona', Auth::user()->zona)->where('rol_id', 2)->get();
