@@ -17,9 +17,6 @@
                             </div>
                             <input type="hidden" name="usuario" value="{{$u->id}}">
             @endforeach
-                            @foreach ($tfs as $tf )
-                                <input type="hidden" name="tf" value={{$tf->id}}>
-                            @endforeach
                         </div>
                         <div class="modal-footer">
                             <div class="row">
