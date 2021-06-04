@@ -4,16 +4,16 @@
             <div class="modal-header">
                 <h4>Editar Trabajadora</h4>
             </div>
-            <form action="{{route('trabajadoras.store')}}" enctype="multipart/form-data" method="POST">
+            <form action="{{route('trabajadoras.update')}}" enctype="multipart/form-data" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input name="id" type="hidden"  value="">
                 <div class="modal-body">
                     <div class="form-group row">
                         <div class="col-12 col-md-6">
-                            <p class="first-text">Nombre: <span><input name="nombre" type="text" value="" class="content-text" pattern="[a-zA-Z]{1,15}" required></span></p>
+                            <p class="first-text">Nombre: <span><input name="nombre" type="text" value="" class="content-text" required></span></p>
                         </div>
                         <div class="col-12 col-md-6">
-                            <p class="first-text">Apellidos: <span><input name="apellidos" type="text" value="" class="content-text" pattern="[a-zA-Z]{1,15}" required></span></p>
+                            <p class="first-text">Apellidos: <span><input name="apellidos" type="text" value="" class="content-text" required></span></p>
                         </div>
                         <div class="col-12 col-md-6">
                             <p class="first-text">Teléfono: <span><input name="telefono" type="number" value="" class="content-text"  minlength="9" required></span></p>
@@ -21,8 +21,24 @@
                         <div class="col-12 col-md-6">
                             <p class="first-text">Email: <span><input name="email" type="email" value="" class="content-text" required></span></p>
                         </div>
-                        <div class="col-12 col-md-6">
-                            <p class="first-text">Password: <span><input name="password" type="text" value="" class="content-text"  minlength="8" required></span></p>
+                        <div class="col-12">
+                            <div class="changePassword mt-3 mb-4">
+                                <button type="button" class="btn btn-general">Cambiar password</button>
+                            </div>
+                            <div class="row password">
+                                <div class="col-12">
+                                    <p class="first-text">Password:
+                                </div>
+                                <div class="col-8">
+                                        <span>
+                                            <input name="password" type="text" value="" class="content-text"  minlength="8">
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="col-4">
+                                    <p class="normal-text">Cancelar <img class="close-cross cancelPwd" src="{{asset('/img/icons/X.png')}}" alt="salir"></p>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-12">
                             <p class="first-text">Zona:
@@ -35,7 +51,6 @@
                                 </span>
                             </p>
                         </div>
-                        <!--
                         <div class="col-12">
                             <p class="first-text">Foto de perfil:
                                 <span>
@@ -43,7 +58,6 @@
                                 </span>
                             </p>
                         </div>
-                        -->
                         <div class="col-12">
                             <div class="modal-footer">
                                 <div class="row">
@@ -66,4 +80,22 @@
         </div>
     </div>
 </div>
+@if(Session::has('updated'))
+    <script type="text/javascript">
+        Swal.fire({
+            icon: 'success',
+            title: 'Done!',
+            text: 'Trabajadora modificada'
+        })
 
+    </script>
+@elseif(Session::has('updated'))
+<script type="text/javascript">
+    Swal.fire({
+        icon: 'error',
+        title: 'Ups!',
+        text: 'Error al modificar trabajadora :('
+    })
+
+</script>
+@endif
